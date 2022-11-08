@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomerModel } from 'src/app/models/customer.model';
 import { RoleModel } from 'src/app/models/role.model';
-import { UserModel } from 'src/app/models/user.model';
 import { CustomerService } from 'src/app/services/customer.service';
 import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
@@ -49,6 +48,9 @@ export class AddUserComponent implements OnInit {
   }
   onSubmit() {
     let newUser = this.addUserForm.value;
+    if (newUser['middleName'] == null) {
+      newUser['middleName'] = '';
+    }
     newUser['customerId'] = +newUser.customerId;
     newUser['roleId'] = +newUser.roleId;
     console.log(newUser);
@@ -56,7 +58,7 @@ export class AddUserComponent implements OnInit {
     this.showAddForm = false;
     this.showAddButton = true;
 
-    this.userService.postUser(newUser).subscribe((res) => {
+    this.userService.postUser(newUser).subscribe((_) => {
       this.addUserForm.reset();
       this.onSubmitUser.emit();
     });

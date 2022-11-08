@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from './services/user.service';
-import { UserModel } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +6,5 @@ import { UserModel } from './models/user.model';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  usersData: UserModel[] = [];
-  renderTable: boolean = false;
-  loadButtonContent: string = 'Load Data';
-
-  constructor(private userService: UserService) {}
-
-  onLoadData() {
-    this.renderTable = true;
-    this.loadButtonContent = 'Refresh Data';
-    this.userService.getUsers().subscribe((Users) => {
-      this.usersData = Users;
-      console.log(Users);
-    });
-  }
+  constructor() {}
 }

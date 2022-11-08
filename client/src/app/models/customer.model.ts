@@ -1,6 +1,10 @@
+import { UserModel } from './user.model';
+
+export type nString = string | undefined | null;
 export interface CustomerModel {
-  id?: number;
-  name: string;
-  website?: string;
-  address?: string;
+  id?: nString;
+  name: nString;
+  website: nString;
+  address: nString;
+  users?: UserModel[];
 }
